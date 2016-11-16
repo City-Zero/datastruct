@@ -75,7 +75,37 @@ void no_hou(Node *root)
     }
 }
 
-void create()
+int find(char *s,char a)
+{
+    int i = 0;
+    while(s[i] != a){
+        i++;
+    }
+    return i;
+}
+
+void create(Node **root,char *xian,char *zhong,int *a)
+{
+    if(*a == strlen(xian) - 1) {
+        (*root) = NULL;
+        return;
+    }
+    (*root) = malloc(sizeof(Node));
+    (*root)->data = xian[*a];
+    int b = find(zhong,xian[*a]);
+    if(b > *a){
+        (*a)++;
+        create(&((*root)->Lchild),xian,zhong,&(*a));
+    } else if(b == *a){
+        (*a)++;
+        (*root)->Lchild = NULL;
+        create(&((*root)->Rchild),xian,zhong,&(*a));
+    } else {
+        (*a)++;
+        (*root)->Lchild = NULL;
+        (*root)->Rchild = NULL;
+    }
+}
 
 int main(void)
 {
@@ -83,6 +113,7 @@ int main(void)
     char zhong[50];
     scanf("%s %s",xian,zhong);
     Node *root;
-    xian_kuo_create(&root);
+    int a = 0;
+    create(&root,xian,zhong,&a);
     no_hou(root);
 }
