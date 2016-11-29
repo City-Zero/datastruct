@@ -23,6 +23,10 @@ typedef struct zhan{
     int top;
 }Zhan;
 
+int size;
+char xian[50];
+char zhong[50];
+
 void xian_kuo_create(Node **root)
 {
     char ch;
@@ -75,45 +79,42 @@ void no_hou(Node *root)
     }
 }
 
-int find(char *s,char a)
+int find_z(char ch)
 {
-    int i = 0;
-    while(s[i] != a){
-        i++;
-    }
-    return i;
+	int i;
+	for(i = 0;i < size;i++){
+		if(zhong[i] == ch)
+			return i;
+	}
 }
 
-void create(Node **root,char *xian,char *zhong,int *a)
+int find_x(char ch)
 {
-    if(*a == strlen(xian) - 1) {
-        (*root) = NULL;
-        return;
-    }
-    (*root) = malloc(sizeof(Node));
-    (*root)->data = xian[*a];
-    int b = find(zhong,xian[*a]);
-    if(b > *a){
-        (*a)++;
-        create(&((*root)->Lchild),xian,zhong,&(*a));
-    } else if(b == *a){
-        (*a)++;
-        (*root)->Lchild = NULL;
-        create(&((*root)->Rchild),xian,zhong,&(*a));
-    } else {
-        (*a)++;
-        (*root)->Lchild = NULL;
-        (*root)->Rchild = NULL;
-    }
+	int i;
+	for(i = 0;i < size;i++){
+		if(xian[i] == ch)
+			return i;
+	}
+}
+void create(Node **root,char *x,char *z,int len)
+{
+	if(len == 0) {
+		(*root) = NULL;
+		return ;
+	}
+	(*root) = malloc(sizoeof(Node));
+	(*root)->data = *x;
+	int num_z = find_z(*x);
+	int num_x = find_x(*x);
+	create(&((*root)->Lchild),xian[num_x + 1],zhong[0],find_z - find_x);
+	create(&((*root)->Rchild),xian[num_z + 1],zhong[],len - num_z - 1);
 }
 
 int main(void)
 {
-    char xian[50];
-    char zhong[50];
+	size = strlen(xian);
     scanf("%s %s",xian,zhong);
     Node *root;
-    int a = 0;
-    create(&root,xian,zhong,&a);
+    create(&root,xian,zhong,size);
     no_hou(root);
 }
