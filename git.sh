@@ -1,6 +1,6 @@
 #!/bin/bash -
 if [ ! $1 ]; then
-    ab=`date | awk '{print $1$2$3}'`
+    ab=`date +%F-%T`
 else
     ab=$1
 fi
