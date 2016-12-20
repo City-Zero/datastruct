@@ -1,10 +1,9 @@
 #!/bin/bash -
 if [ ! $1 ]; then
-    zhu=`date | awk '{print $1$2$3}'` 
-else 
-    zhu=$1
+    ab=`date | awk '{print $1$2$3}'`
+else
+    ab=$1
 fi
 git add .
-git commit -m "$zhu"
-git push origin master 
-
+git commit -m $ab
+git push
