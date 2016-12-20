@@ -4,7 +4,6 @@ if [ ! $1 ]; then
 else
     ab=$1
 fi
-echo $ab
 git add .
 git commit -m $ab
 git push
