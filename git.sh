@@ -5,5 +5,5 @@ else
     ab=$1
 fi
 git add .
-git commit -m $ab
+git commit -am $ab
 git push
