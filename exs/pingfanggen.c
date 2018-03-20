@@ -25,8 +25,16 @@ double func(double n,double left,double right){
 
 int main(void){
     double n;
+    double right,left;
     scanf("%lf",&n);
-    double res = func(n,0,n);
+    if(n<1){
+        right = 1;
+        left = n;
+    }else{
+        right = n;
+        left = 0;
+    }
+    double res = func(n,left,right);
     if(res * res == n){
         printf("%.2lf",res);
     }else{
