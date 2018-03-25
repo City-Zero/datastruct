@@ -30,14 +30,12 @@ int main(void){
         int max = 1;
         int times = 1;
         for(j = 0;j<i;j++){
-            int m;
+            int m = 1;
             if(a[i] > a[j]){
                 m = a_t[0][j] + 1;
             }
             else if(a[i] == a[j]){
                 m  = a_t[0][j];
-            }else{
-                continue;
             }
             if(m > max){
                 max = m;
@@ -49,7 +47,9 @@ int main(void){
         a_t[0][i] = max;
         a_t[1][j] = times;
     }
-    
+    /*
+    用一个二维数组，第一行为该位置最长可以组成的序列长度，第二行代表该长度的序列个数
+    */
     for(i = 0;i<2;i++){
         for(j = 0;j<n;j++){
             printf("%d ",a_t[i][j]);
